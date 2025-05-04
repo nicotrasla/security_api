@@ -9,9 +9,30 @@ from core.infrastructure.adapters.scanner_adapter import (
     create_whois_scan_use_case,
     create_nmap_scan_use_case,
 )
+from django.shortcuts import render
+from django.http import HttpResponseServerError
+
+
+def trigger_error_500(request):
+    # Genera un error 500 intencionalmente
+    raise Exception("Error 500 generado intencionalmente para pruebas.")
+
+
+def home_page(request):
+    return render(request, 'home.html')
+
+
+def custom_page_not_found(request, exception=None):
+    return render(request, '404.html', status=404)
+
+
+def custom_server_error(request):
+    return render(request, '500.html', status=500)
+
 
 class GoogleDorkRequestSerializer(serializers.Serializer):
     query = serializers.CharField(required=True)
+
 
 class GoogleDorkView(APIView):
     def post(self, request):
@@ -24,9 +45,11 @@ class GoogleDorkView(APIView):
             return Response(result_serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 class DnsScanRequestSerializer(serializers.Serializer):
     domain = serializers.CharField(required=True)
     type = serializers.CharField(default='A')
+
 
 class DnsScanView(APIView):
     def post(self, request):
@@ -38,11 +61,14 @@ class DnsScanView(APIView):
             results = use_case.execute(domain, record_type)
             result_serializer = DNSRecordSerializer(results, many=True)
             return Response(result_serializer.data)
-        return Response(serializer.errors, status=status.HTTP_200_OK) # Corrected status code
+        # Corrected status code
+        return Response(serializer.errors, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 class WhoisScanRequestSerializer(serializers.Serializer):
     domain = serializers.CharField(required=True)
+
 
 class WhoisScanView(APIView):
     def post(self, request):
@@ -55,9 +81,12 @@ class WhoisScanView(APIView):
             return Response(result_serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 class NmapScanRequestSerializer(serializers.Serializer):
     target = serializers.CharField(required=True)
-    ports = serializers.CharField(required=False, allow_blank=True, default=None)
+    ports = serializers.CharField(
+        required=False, allow_blank=True, default=None)
+
 
 class NmapScanView(APIView):
     def post(self, request):

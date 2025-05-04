@@ -1,72 +1,33 @@
-# api/views.py
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status, serializers
-from api.serializers import GoogleDorkResultSerializer, DNSRecordSerializer, WhoisInfoSerializer, NmapScanResultSerializer
-from core.infrastructure.adapters.scanner_adapter import (
-    create_google_dork_use_case,
-    create_dns_scan_use_case,
-    create_whois_scan_use_case,
-    create_nmap_scan_use_case,
-)
+from django.urls import path
+from .views import GoogleDorkView, DnsScanView, WhoisScanView, NmapScanView, home_page, custom_page_not_found, custom_server_error, trigger_error_500
+from django.conf.urls import handler404, handler500
+from django.views.generic import TemplateView
 
-class GoogleDorkRequestSerializer(serializers.Serializer):
-    query = serializers.CharField(required=True)
+# Configuración de las rutas
+urlpatterns = [
+    # Página de inicio
+    path('', home_page, name='home'),
 
-class GoogleDorkView(APIView):
-    def post(self, request):
-        serializer = GoogleDorkRequestSerializer(data=request.data)
-        if serializer.is_valid():
-            query = serializer.validated_data['query']
-            use_case = create_google_dork_use_case()
-            result = use_case.execute(query)
-            result_serializer = GoogleDorkResultSerializer(result)
-            return Response(result_serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    # Endpoint para probar error 500
+    path('trigger-500/', trigger_error_500),
 
-class DnsScanRequestSerializer(serializers.Serializer):
-    domain = serializers.CharField(required=True)
-    type = serializers.CharField(default='A')
+    # Rutas para las páginas informativas (GET)
+    path('google-dork/info/', TemplateView.as_view(template_name="google_dork.html"),
+         name='google-dork-info'),
+    path('dns-scan/info/', TemplateView.as_view(template_name="dns_scan.html"),
+         name='dns-scan-info'),
+    path('whois-scan/info/', TemplateView.as_view(template_name="whois_scan.html"),
+         name='whois-scan-info'),
+    path('nmap-scan/info/', TemplateView.as_view(template_name="nmap_scan.html"),
+         name='nmap-scan-info'),
 
-class DnsScanView(APIView):
-    def post(self, request):
-        serializer = DnsScanRequestSerializer(data=request.data)
-        if serializer.is_valid():
-            domain = serializer.validated_data['domain']
-            record_type = serializer.validated_data['type']
-            use_case = create_dns_scan_use_case()
-            results = use_case.execute(domain, record_type)
-            result_serializer = DNSRecordSerializer(results, many=True)
-            return Response(result_serializer.data)
-        return Response(serializer.errors, status=status.HTTP_200_OK) # Corrected status code
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    # Rutas para los endpoints funcionales (POST)
+    path('google-dork/', GoogleDorkView.as_view(), name='google-dork'),
+    path('dns-scan/', DnsScanView.as_view(), name='dns-scan'),
+    path('whois-scan/', WhoisScanView.as_view(), name='whois-scan'),
+    path('nmap-scan/', NmapScanView.as_view(), name='nmap-scan'),
+]
 
-class WhoisScanRequestSerializer(serializers.Serializer):
-    domain = serializers.CharField(required=True)
-
-class WhoisScanView(APIView):
-    def post(self, request):
-        serializer = WhoisScanRequestSerializer(data=request.data)
-        if serializer.is_valid():
-            domain = serializer.validated_data['domain']
-            use_case = create_whois_scan_use_case()
-            result = use_case.execute(domain)
-            result_serializer = WhoisInfoSerializer(result)
-            return Response(result_serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-class NmapScanRequestSerializer(serializers.Serializer):
-    target = serializers.CharField(required=True)
-    ports = serializers.CharField(required=False, allow_blank=True, default=None)
-
-class NmapScanView(APIView):
-    def post(self, request):
-        serializer = NmapScanRequestSerializer(data=request.data)
-        if serializer.is_valid():
-            target = serializer.validated_data['target']
-            ports = serializer.validated_data['ports']
-            use_case = create_nmap_scan_use_case()
-            result = use_case.execute(target, ports)
-            result_serializer = NmapScanResultSerializer(result)
-            return Response(result_serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+# Configuración de manejadores de errores
+handler404 = custom_page_not_found
+handler500 = custom_server_error

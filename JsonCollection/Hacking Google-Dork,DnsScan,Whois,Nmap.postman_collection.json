@@ -1,0 +1,795 @@
+{
+	"info": {
+		"_postman_id": "202ed196-7ded-4639-89b1-00557bb160ae",
+		"name": "Hacking Google-Dork,DnsScan,Whois,Nmap",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13928350"
+	},
+	"item": [
+		{
+			"name": "http://127.0.0.1:8000/google-dork/",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "example query",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/google-dork/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"google-dork",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "http://127.0.0.1:8000/google-dork/",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "example query",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/google-dork/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"google-dork",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 02 May 2025 22:19:29 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.11.9"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1741"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"query\": \"example query\",\n    \"results\": [\n        {\n            \"title\": \"https://www.w3schools.com/sql/sql_examples.asp\",\n            \"url\": \"https://www.w3schools.com/sql/sql_examples.asp\"\n        },\n        {\n            \"title\": \"https://www.oreilly.com/library/view/mysql-reference-manual/0596002653/ch03s05.html\",\n            \"url\": \"https://www.oreilly.com/library/view/mysql-reference-manual/0596002653/ch03s05.html\"\n        },\n        {\n            \"title\": \"https://www.datacamp.com/tutorial/sql-query-examples-and-tutorial\",\n            \"url\": \"https://www.datacamp.com/tutorial/sql-query-examples-and-tutorial\"\n        },\n        {\n            \"title\": \"https://learnsql.com/blog/basic-sql-query-examples/\",\n            \"url\": \"https://learnsql.com/blog/basic-sql-query-examples/\"\n        },\n        {\n            \"title\": \"https://dev.mysql.com/doc/mysql-tutorial-excerpt/5.7/en/examples.html\",\n            \"url\": \"https://dev.mysql.com/doc/mysql-tutorial-excerpt/5.7/en/examples.html\"\n        },\n        {\n            \"title\": \"https://support.microsoft.com/en-us/office/examples-of-query-criteria-3197228c-8684-4552-ac03-aba746fb29d8\",\n            \"url\": \"https://support.microsoft.com/en-us/office/examples-of-query-criteria-3197228c-8684-4552-ac03-aba746fb29d8\"\n        },\n        {\n            \"title\": \"https://www.enterprisedb.com/postgres-tutorials/postgresql-query-introduction-explanation-and-50-examples\",\n            \"url\": \"https://www.enterprisedb.com/postgres-tutorials/postgresql-query-introduction-explanation-and-50-examples\"\n        },\n        {\n            \"title\": \"https://www.ibm.com/docs/en/db2-big-sql/6.0?topic=statement-examples-select-queries\",\n            \"url\": \"https://www.ibm.com/docs/en/db2-big-sql/6.0?topic=statement-examples-select-queries\"\n        },\n        {\n            \"title\": \"https://docs.spring.io/spring-data/jpa/reference/repositories/query-by-example.html\",\n            \"url\": \"https://docs.spring.io/spring-data/jpa/reference/repositories/query-by-example.html\"\n        },\n        {\n            \"title\": \"https://www.guvi.in/blog/sql-queries-with-examples/\",\n            \"url\": \"https://www.guvi.in/blog/sql-queries-with-examples/\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "http://127.0.0.1:8000/dns-scan/",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"domain\": \"example.com\", \"type\": \"A\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/dns-scan/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"dns-scan",
+						""
+					]
+				},
+				"description": "Generated from cURL: curl -X POST http://127.0.0.1:8000/api/dns-scan/ \\\n-H \"Content-Type: application/json\" \\\n-d '{\"domain\": \"example.com\", \"type\": \"A\"}'"
+			},
+			"response": [
+				{
+					"name": "http://127.0.0.1:8000/api/dns-scan/",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"domain\": \"example.com\", \"type\": \"A\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/dns-scan/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"dns-scan",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 02 May 2025 22:25:21 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.11.9"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "219"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"type\": \"A\",\n        \"value\": \"96.7.128.198\"\n    },\n    {\n        \"type\": \"A\",\n        \"value\": \"96.7.128.175\"\n    },\n    {\n        \"type\": \"A\",\n        \"value\": \"23.215.0.138\"\n    },\n    {\n        \"type\": \"A\",\n        \"value\": \"23.215.0.136\"\n    },\n    {\n        \"type\": \"A\",\n        \"value\": \"23.192.228.84\"\n    },\n    {\n        \"type\": \"A\",\n        \"value\": \"23.192.228.80\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "http://127.0.0.1:8000/whois-scan/",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"domain\": \"google.cl\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/whois-scan/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"whois-scan",
+						""
+					]
+				},
+				"description": "Generated from cURL: curl -X POST http://127.0.0.1:8000/api/whois-scan/ \\\n-H \"Content-Type: application/json\" \\\n-d '{\"domain\": \"example.com\"}'"
+			},
+			"response": [
+				{
+					"name": "http://127.0.0.1:8000/api/whois-scan/",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"domain\": \"google.cl\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/whois-scan/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"whois-scan",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 02 May 2025 22:26:08 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.11.9"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "96"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"domain\": \"google.cl\",\n    \"registrar\": \"MarkMonitor Inc.\",\n    \"creation_date\": \"2002-10-22 17:48:23 CLST\"\n}"
+				}
+			]
+		},
+		{
+			"name": "http://127.0.0.1:8000/nmap-scan/",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"target\": \"192.168.1.1\", \"ports\": \"22,80\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/nmap-scan/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"nmap-scan",
+						""
+					]
+				},
+				"description": "Generated from cURL: curl -X POST http://127.0.0.1:8000/api/nmap-scan/ \\\n-H \"Content-Type: application/json\" \\\n-d '{\"target\": \"192.168.1.1\", \"ports\": \"22,80\"}'"
+			},
+			"response": [
+				{
+					"name": "http://127.0.0.1:8000/api/nmap-scan/",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"target\": \"192.168.1.1\", \"ports\": \"22,80\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/nmap-scan/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"nmap-scan",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 02 May 2025 22:30:46 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.11.9"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "175"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"target\": \"192.168.1.1\",\n    \"ports\": [\n        {\n            \"port\": 22,\n            \"state\": \"closed\",\n            \"service\": \"ssh\",\n            \"version\": \" \"\n        },\n        {\n            \"port\": 80,\n            \"state\": \"open\",\n            \"service\": \"http\",\n            \"version\": \"Huawei router http admin \"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Controlando errores",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"target\": \"192.168.1.1\", \"ports\": \"22,80\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/trigger-500",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"trigger-500"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Pagina 404",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"target\": \"192.168.1.1\", \"ports\": \"22,80\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/fdfhfjhghj",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"fdfhfjhghj"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 02 May 2025 22:54:27 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.11.9"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1174"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "<!DOCTYPE html>\n<html lang=\"en\">\n    <head>\n        <meta charset=\"UTF-8\">\n        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n        <title>Error 404 - Página no encontrada</title>\n        <style>\n        body {\n            font-family: Arial, sans-serif;\n            background-color: #f8f9fa;\n            color: #333;\n            margin: 0;\n            padding: 0;\n            display: flex;\n            justify-content: center;\n            align-items: center;\n            height: 100vh;\n            text-align: center;\n        }\n        .container {\n            max-width: 600px;\n        }\n        h1 {\n            font-size: 4rem;\n            color: #dc3545;\n        }\n        p {\n            font-size: 1.2rem;\n            margin: 20px 0;\n        }\n        a {\n            text-decoration: none;\n            color: #007bff;\n            font-weight: bold;\n        }\n        a:hover {\n            text-decoration: underline;\n        }\n    </style>\n    </head>\n    <body>\n        <div class=\"container\">\n            <h1>404</h1>\n            <p>Lo sentimos, la página que buscas no existe.</p>\n            <p>\n                <a href=\"/\">Volver a la página de inicio</a>\n            </p>\n        </div>\n    </body>\n</html>"
+				},
+				{
+					"name": "Pagina 500",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"target\": \"192.168.1.1\", \"ports\": \"22,80\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/trigger-500",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"trigger-500"
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 02 May 2025 22:56:46 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.11.9"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1168"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "<!DOCTYPE html>\n<html lang=\"en\">\n    <head>\n        <meta charset=\"UTF-8\">\n        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n        <title>Error 500 - Error del servidor</title>\n        <style>\n        body {\n            font-family: Arial, sans-serif;\n            background-color: #f8f9fa;\n            color: #333;\n            margin: 0;\n            padding: 0;\n            display: flex;\n            justify-content: center;\n            align-items: center;\n            height: 100vh;\n            text-align: center;\n        }\n        .container {\n            max-width: 600px;\n        }\n        h1 {\n            font-size: 4rem;\n            color: #dc3545;\n        }\n        p {\n            font-size: 1.2rem;\n            margin: 20px 0;\n        }\n        a {\n            text-decoration: none;\n            color: #007bff;\n            font-weight: bold;\n        }\n        a:hover {\n            text-decoration: underline;\n        }\n    </style>\n    </head>\n    <body>\n        <div class=\"container\">\n            <h1>500</h1>\n            <p>Oops, algo salió mal en nuestro servidor.</p>\n            <p>\n                <a href=\"/\">Volver a la página de inicio</a>\n            </p>\n        </div>\n    </body>\n</html>"
+				}
+			]
+		},
+		{
+			"name": "http://127.0.0.1:8000/HomePage",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"target\": \"192.168.1.1\", \"ports\": \"22,80\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "http://127.0.0.1:8000/HomePage",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"target\": \"192.168.1.1\", \"ports\": \"22,80\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 02 May 2025 22:50:36 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.11.9"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "2282"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "<!DOCTYPE html>\n<html lang=\"en\">\n    <head>\n        <meta charset=\"UTF-8\">\n        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n        <title>Bienvenido a la API de Seguridad</title>\n        <style>\n        body {\n            font-family: Arial, sans-serif;\n            margin: 0;\n            padding: 0;\n            background-color: #f4f4f9;\n            color: #333;\n        }\n        header {\n            background-color: #007bff;\n            color: white;\n            padding: 20px 0;\n            text-align: center;\n        }\n        header h1 {\n            margin: 0;\n            font-size: 2.5rem;\n        }\n        header p {\n            margin: 5px 0 0;\n            font-size: 1.2rem;\n        }\n        main {\n            padding: 20px;\n            text-align: center;\n        }\n        main h2 {\n            font-size: 2rem;\n            color: #007bff;\n        }\n        main p {\n            font-size: 1.2rem;\n            margin: 10px 0;\n        }\n        .endpoints {\n            margin-top: 20px;\n        }\n        .endpoints a {\n            display: inline-block;\n            margin: 10px;\n            padding: 10px 20px;\n            background-color: #007bff;\n            color: white;\n            text-decoration: none;\n            border-radius: 5px;\n            font-size: 1rem;\n        }\n        .endpoints a:hover {\n            background-color: #0056b3;\n        }\n        footer {\n            margin-top: 20px;\n            padding: 10px 0;\n            background-color: #333;\n            color: white;\n            text-align: center;\n        }\n    </style>\n    </head>\n    <body>\n        <header>\n            <h1>Bienvenido a la API de Seguridad</h1>\n            <p>Explora los endpoints disponibles para interactuar con la API</p>\n        </header>\n        <main>\n            <h2>Endpoints Disponibles</h2>\n            <p>Haz clic en los enlaces para más información sobre cada funcionalidad:</p>\n            <div class=\"endpoints\">\n                <a href=\"/api/google-dork/\">Google Dork</a>\n                <a href=\"/api/dns-scan/\">DNS Scan</a>\n                <a href=\"/api/whois-scan/\">Whois Scan</a>\n                <a href=\"/api/nmap-scan/\">Nmap Scan</a>\n            </div>\n        </main>\n        <footer>\n            <p>&copy; 2025 API de Seguridad. Todos los derechos reservados.</p>\n        </footer>\n    </body>\n</html>"
+				}
+			]
+		}
+	]
+}
