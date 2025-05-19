@@ -2,7 +2,14 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, serializers
-from api.serializers import GoogleDorkResultSerializer, DNSRecordSerializer, WhoisInfoSerializer, NmapScanResultSerializer
+from api.serializers import (
+    GoogleDorkResultSerializer,
+    DNSRecordSerializer,
+    WhoisInfoSerializer,
+    NmapScanResultSerializer,
+    AIAnalysisRequestSerializer,
+    AIAnalysisResponseSerializer
+)
 from core.infrastructure.adapters.scanner_adapter import (
     create_google_dork_use_case,
     create_dns_scan_use_case,
@@ -11,6 +18,8 @@ from core.infrastructure.adapters.scanner_adapter import (
 )
 from django.shortcuts import render
 from django.http import HttpResponseServerError
+import json
+import re
 
 
 def trigger_error_500(request):
@@ -97,5 +106,72 @@ class NmapScanView(APIView):
             use_case = create_nmap_scan_use_case()
             result = use_case.execute(target, ports)
             result_serializer = NmapScanResultSerializer(result)
+            return Response(result_serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class AIAnalysisView(APIView):
+    def post(self, request):
+        serializer = AIAnalysisRequestSerializer(data=request.data)
+        if serializer.is_valid():
+            text = serializer.validated_data['text']
+
+            # Análisis básico de seguridad
+            sensitive_patterns = {
+                'config_files': r'\.(env|xml|conf|config|ini|yaml|yml)$',
+                'backup_files': r'\.(bak|backup|old|tmp|temp)$',
+                'admin_pages': r'(admin|login|dashboard|control|manage)',
+                'sensitive_dirs': r'(backup|db|database|sql|logs|log)',
+                'api_endpoints': r'(api|rest|graphql|soap)',
+            }
+
+            results = json.loads(text)
+            analysis = {
+                'classification': 'neutral',
+                'confidence': 0.0,
+                'details': {
+                    'sensitive_files': [],
+                    'potential_vulnerabilities': [],
+                    'recommendations': []
+                }
+            }
+
+            for dork, urls in results.items():
+                for url in urls:
+                    # Analizar cada URL
+                    for pattern_name, pattern in sensitive_patterns.items():
+                        if re.search(pattern, url, re.IGNORECASE):
+                            if pattern_name in ['config_files', 'backup_files']:
+                                analysis['details']['sensitive_files'].append(
+                                    url)
+                                analysis['classification'] = 'potentially_sensitive'
+                                analysis['confidence'] = max(
+                                    analysis['confidence'], 0.7)
+                            elif pattern_name in ['admin_pages', 'sensitive_dirs']:
+                                analysis['details']['potential_vulnerabilities'].append(
+                                    url)
+                                analysis['classification'] = 'potentially_sensitive'
+                                analysis['confidence'] = max(
+                                    analysis['confidence'], 0.8)
+                            elif pattern_name == 'api_endpoints':
+                                analysis['details']['potential_vulnerabilities'].append(
+                                    url)
+                                analysis['classification'] = 'potentially_sensitive'
+                                analysis['confidence'] = max(
+                                    analysis['confidence'], 0.6)
+
+            # Generar recomendaciones basadas en los hallazgos
+            if analysis['details']['sensitive_files']:
+                analysis['details']['recommendations'].append(
+                    "Se encontraron archivos de configuración o respaldo expuestos. "
+                    "Considere restringir el acceso a estos archivos."
+                )
+            if analysis['details']['potential_vulnerabilities']:
+                analysis['details']['recommendations'].append(
+                    "Se detectaron páginas administrativas o directorios sensibles. "
+                    "Verifique que estos recursos estén adecuadamente protegidos."
+                )
+
+            result_serializer = AIAnalysisResponseSerializer(analysis)
             return Response(result_serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

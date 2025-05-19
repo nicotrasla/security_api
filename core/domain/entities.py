@@ -1,23 +1,37 @@
 from dataclasses import dataclass
-from typing import List, Dict
+from typing import List, Dict, Any
+
 
 @dataclass
 class GoogleDorkResult:
     query: str
-    results: List[Dict]
+    results: List[str]
+
 
 @dataclass
 class DNSRecord:
     type: str
     value: str
 
+
 @dataclass
 class WhoisInfo:
-    domain: str
     registrar: str
     creation_date: str
+    expiration_date: str
+    name_servers: List[str]
+    status: List[str]
+
 
 @dataclass
 class NmapScanResult:
     target: str
-    ports: List[Dict]
+    ports: List[str]
+    services: List[str]
+
+
+@dataclass
+class AIAnalysisResult:
+    classification: str
+    confidence: float
+    details: Dict[str, Any]

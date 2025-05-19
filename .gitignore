@@ -1,0 +1,52 @@
+# Archivos de entorno
+.env
+.env.*
+
+# Archivos de caché de Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Archivos de caché de Django
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media/
+
+# Archivos de caché de IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Directorio de hallazgos
+hallazgos/
+
+# Archivos de resultados del ReconBot
+reconbot_*.json
+reconbot_*_report.pdf
+
+# Archivos temporales
+*.tmp
+*.bak
+*.swp
+*~ 

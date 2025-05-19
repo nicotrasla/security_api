@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+      - ./hallazgos:/app/hallazgos
+    environment:
+      - DEBUG=1
+      - DJANGO_SETTINGS_MODULE=api.settings
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+
+  reconbot:
+    build: .
+    volumes:
+      - .:/app
+      - ./hallazgos:/app/hallazgos
+    environment:
+      - DEBUG=1
+    command: python reconbot/reconbot.py google.cl

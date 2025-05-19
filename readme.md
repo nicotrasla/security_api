@@ -8,6 +8,7 @@ Este proyecto es una API de seguridad que incluye funcionalidades como escaneo d
 - [Requisitos](#requisitos)
 - [Instalación](#instalación)
 - [Uso](#uso)
+- [Docker Compose](#docker-compose)
 
 ---
 
@@ -32,28 +33,66 @@ Este proyecto es una API de seguridad que incluye funcionalidades como escaneo d
 ## Instalación
 
 1. Clona este repositorio:
+
    ```bash
    git clone https://github.com/nicotrasla/security_api.git
    cd security_api
    ```
+
 2. Crea y activa un entorno virtual (opcional):
+
    ```bash
    python -m venv venv
    source venv/bin/activate  # En Windows: venv\Scripts\activate
    ```
+
 3. Instala las dependencias:
+
    ```bash
    pip install -r requirements.txt
    ```
 
 4. Inicia el servidor de desarrollo:
+
    ```bash
    python manage.py runserver
    ```
 
 ---
 
+## Docker Compose
+
+Para ejecutar el proyecto usando Docker Compose:
+
+1. Asegúrate de tener Docker y Docker Compose instalados en tu sistema.
+2. Crea un archivo `.env` en el directorio raíz con las siguientes variables:
+
+   ```
+   API_URL=http://web:8000/api/analyze/
+   OPENAI_API_KEY=your_openai_api_key_here
+   ```
+
+3. Construye y ejecuta los contenedores:
+
+   ```bash
+   docker-compose up --build
+   ```
+
+4. El servicio estará disponible en:
+
+   - API: http://localhost:8000
+   - Los informes generados se guardarán en el directorio `hallazgos/`
+
+5. Para detener los servicios:
+
+   ```bash
+   docker-compose down
+   ```
+
+---
+
 ## Uso
+
 Acceso a la API
-El servidor estará disponible en http://127.0.0.1:8000/. 
-Puedes interactuar con los endpoints utilizando el postman collection en ```./JsonCollection ```
+El servidor estará disponible en http://127.0.0.1:8000/.
+Puedes interactuar con los endpoints utilizando el postman collection en `./JsonCollection `
